@@ -19,14 +19,6 @@ struct Graph {
         }
     }
 
-    //Destructor to deallocate the matrix (ChatGPT suggested to prevent memory leak)
-    ~Graph() {
-        for (int i = 0; i < size; ++i) {
-            delete[] matrix[i];
-        }
-        delete[] matrix;
-    }
-
     //Add new node into vector nodes
     void addNode(int flag) {
         Node* temp = new Node();
@@ -38,6 +30,7 @@ struct Graph {
     void addEdge(int sourceColumn, int destinationRow, int weight) {
         if (sourceColumn >= 0 && sourceColumn < size && destinationRow >= 0 && destinationRow < size) {
             matrix[sourceColumn][destinationRow] = weight;
+            matrix[destinationRow][sourceColumn] = weight;
         }
     }
 
@@ -76,16 +69,13 @@ int main() {
     test.addNode(4); // Index of 3
     test.addNode(5); // Index of 4
 
-    test.addEdge(0, 1,10); //Edge that connects A and B
-    test.addEdge(0, 3,5); //Edge that connects B and C
-    test.addEdge(1, 2,1); //...
-    test.addEdge(1, 3,2);
-    test.addEdge(2, 4,4);
-    test.addEdge(3, 1,3);
-    test.addEdge(3, 2,9);
-    test.addEdge(3, 4,2);
-    test.addEdge(4, 0,7);
-    test.addEdge(4, 2,6);
+    test.addEdge(0, 1,4);
+    test.addEdge(0, 4,5);
+    test.addEdge(1, 2,3);
+    test.addEdge(1, 3,7);
+    test.addEdge(1, 4,9);
+    test.addEdge(2, 3,2);
+    test.addEdge(3, 4,3);
 
     test.print();
 }
