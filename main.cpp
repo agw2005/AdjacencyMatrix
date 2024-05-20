@@ -2,7 +2,7 @@
 #include <vector>
 
 struct Node {
-    int data; //The value of each node
+    std::string data; //The name of each node
 };
 
 struct Graph {
@@ -20,7 +20,7 @@ struct Graph {
     }
 
     //Add new node into vector nodes
-    void addNode(int flag) {
+    void addNode(std::string flag) {
         Node* temp = new Node();
         temp->data = flag;
         nodes.push_back(*temp);
@@ -30,7 +30,6 @@ struct Graph {
     void addEdge(int sourceColumn, int destinationRow, int weight) {
         if (sourceColumn >= 0 && sourceColumn < size && destinationRow >= 0 && destinationRow < size) {
             matrix[sourceColumn][destinationRow] = weight;
-            matrix[destinationRow][sourceColumn] = weight;
         }
     }
 
@@ -63,19 +62,22 @@ struct Graph {
 
 int main() {
     Graph test(5);
-    test.addNode(1); // Index of 0
-    test.addNode(2); // Index of 1
-    test.addNode(3); // Index of 2
-    test.addNode(4); // Index of 3
-    test.addNode(5); // Index of 4
+    test.addNode("1"); // Index of 0
+    test.addNode("2"); // Index of 1
+    test.addNode("3"); // Index of 2
+    test.addNode("4"); // Index of 3
+    test.addNode("5"); // Index of 4
 
-    test.addEdge(0, 1,4);
-    test.addEdge(0, 4,5);
-    test.addEdge(1, 2,3);
-    test.addEdge(1, 3,7);
-    test.addEdge(1, 4,9);
-    test.addEdge(2, 3,2);
-    test.addEdge(3, 4,3);
+    test.addEdge(0, 1,10); //Edge that connects A and B
+    test.addEdge(0, 3,5); //Edge that connects B and C
+    test.addEdge(1, 2,1); //...
+    test.addEdge(1, 3,2);
+    test.addEdge(2, 4,4);
+    test.addEdge(3, 1,3);
+    test.addEdge(3, 2,9);
+    test.addEdge(3, 4,2);
+    test.addEdge(4, 0,7);
+    test.addEdge(4, 2,6);
 
     test.print();
 }
