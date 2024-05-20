@@ -68,16 +68,20 @@ int main() {
     test.addNode("4"); // Index of 3
     test.addNode("5"); // Index of 4
 
-    test.addEdge(0, 1,10); //Edge that connects A and B
-    test.addEdge(0, 3,5); //Edge that connects B and C
-    test.addEdge(1, 2,1); //...
-    test.addEdge(1, 3,2);
-    test.addEdge(2, 4,4);
-    test.addEdge(3, 1,3);
-    test.addEdge(3, 2,9);
-    test.addEdge(3, 4,2);
-    test.addEdge(4, 0,7);
-    test.addEdge(4, 2,6);
+    test.addEdge(0, 1,4);
+    test.addEdge(1, 0,4);
+    test.addEdge(0, 4,5);
+    test.addEdge(4, 0,5);
+    test.addEdge(1, 2,3);
+    test.addEdge(2, 1,3);
+    test.addEdge(1, 3,7);
+    test.addEdge(3, 1,7);
+    test.addEdge(1, 4,9);
+    test.addEdge(4, 1,9);
+    test.addEdge(2, 3,2);
+    test.addEdge(3, 2,2);
+    test.addEdge(3, 4,3);
+    test.addEdge(4, 3,3);
 
     test.print();
 }
