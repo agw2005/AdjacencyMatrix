@@ -42,7 +42,6 @@ struct Graph {
         }
     }
 
-    //1+1=2
     void print() {
         std::cout << "  ";
         for (const auto& node : nodes) {
@@ -61,27 +60,41 @@ struct Graph {
 };
 
 int main() {
-    Graph test(5);
-    test.addNode("1"); // Index of 0
-    test.addNode("2"); // Index of 1
-    test.addNode("3"); // Index of 2
-    test.addNode("4"); // Index of 3
-    test.addNode("5"); // Index of 4
+    int N;
+    std::string identifier;
+    int vertexMenu,source,destination,weight;
+    std::cout<<"How many vertices are there?\n";
+    std::cin>>N;
+    Graph test(N);
+    for(int i = 1 ; i <= N ; i++){
+        std::cout<<"What is the identifier for vertex-"<<i<<"?\n";
+        std::cin>>identifier;
+        test.addNode(identifier);
+    }
 
-    test.addEdge(0, 1,4);
-    test.addEdge(1, 0,4);
-    test.addEdge(0, 4,5);
-    test.addEdge(4, 0,5);
-    test.addEdge(1, 2,3);
-    test.addEdge(2, 1,3);
-    test.addEdge(1, 3,7);
-    test.addEdge(3, 1,7);
-    test.addEdge(1, 4,9);
-    test.addEdge(4, 1,9);
-    test.addEdge(2, 3,2);
-    test.addEdge(3, 2,2);
-    test.addEdge(3, 4,3);
-    test.addEdge(4, 3,3);
+    bool isRunning{true};
+    do{
+        std::cout<<"Which vertex do you want the vertex to start?\n";
+        for(int i = 0 ; i < N ; i++){
+            std::cout<<i+1<<". "<<test.nodes[i].data<<std::endl;
+        }
+        std::cout<<"0. There is no more vertex to add\n";
+        std::cin>>vertexMenu;
+        if(vertexMenu == 0){
+            isRunning = false;
+        } else{
+            source = vertexMenu-1;
+            std::cout<<"Where does this edge ends?\n";
+            for(int i = 0 ; i < N ; i++){
+                std::cout<<i+1<<". "<<test.nodes[i].data<<std::endl;
+            }
+            std::cin>>destination;
+            destination--;
+            std::cout<<"What is the weight of this edge?\n";
+            std::cin>>weight;
+            test.addEdge(source,destination,weight);
+        }
+    }while(isRunning);
 
     test.print();
 }
